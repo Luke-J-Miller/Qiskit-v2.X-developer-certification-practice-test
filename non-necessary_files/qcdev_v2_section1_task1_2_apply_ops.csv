@@ -1,0 +1,39 @@
+"In Qiskit’s circuit library, which objects can be directly appended to a QuantumCircuit?",QuantumCircuit and Instruction,Only Gate,Only QuantumCircuit,Only Instruction,QuantumCircuit and Instruction,"Elements in qiskit.circuit.library are either QuantumCircuits or Instructions, both can be appended to circuits."
+Which category best describes operations like MCXGate whose concrete decomposition is chosen during transpilation?,Structural operations,Abstract operations,Standard directives,Standard operations (non-unitary),Abstract operations,Abstract operations specify a mathematical action; the compiler chooses a decomposition.
+Which category includes ansatz-building helpers returned by functions like real_amplitudes(n)?,Abstract operations,Structural operations,Standard directives,Standard operations,Structural operations,Structural operations have a unique decomposition and are implemented as functions returning a QuantumCircuit.
+What does get_standard_gate_name_mapping() return?,A dict name→object for standard gates/instructions,A list of basis gates of the backend,A map from basis to unitary matrices only,A transpilation pass manager,A dict name→object for standard gates/instructions,"It returns a dictionary mapping standard gate/operation names (e.g., 'cx') to their singleton objects."
+Which methods are guaranteed to exist on reversible standard gates (subclasses of Gate)?,"to_matrix(), power(), control()","measure(), reset(), barrier()","bind_parameters(), assign_parameters(), snapshot()","compose(), append(), draw()","to_matrix(), power(), control()","Standard gates are unitary; Gate provides to_matrix(), power(), and control() for unitary operations."
+Which of the following is NON‑unitary in Qiskit’s standard operations?,RZGate,Reset,SXGate,CXGate,Reset,"Measure and Reset are standard operations (non‑reversible), not unitary gates."
+Which of the following is a standard directive that may be ignored by backends/transpiler?,Barrier,Measure,Reset,CX,Barrier,Barrier is a compiler directive; a backend/transpiler may ignore it if unsupported.
+The SXGate is best described as:,Rotation around Z by φ,√X (the positive‑phase square root of X),Hadamard,Pauli‑Y,√X (the positive‑phase square root of X),SXGate implements √X; SXdgGate is its inverse.
+Which single‑qubit gate family implements rotations about a specified axis in the Bloch sphere?,"UGate(θ,φ,λ)",RX/RY/RZ,H/T/S,IGate only,RX/RY/RZ,"RX, RY, and RZ implement rotations about X, Y, and Z respectively; UGate is a general ZYZ Euler form."
+"UGate(θ, φ, λ) corresponds to which decomposition style?",XYZ Euler,ZYZ Euler,ZXZ Euler,Cartan KAK,ZYZ Euler,UGate implements a general single‑qubit rotation in ZYZ Euler angles.
+Which pair are commonly used entangling **standard gates**?,CX and CZ,H and S,U and IGate,SX and T,CX and CZ,CX (controlled‑X) and CZ (controlled‑Z) are standard 2‑qubit entanglers.
+Which gate swaps the states of two qubits without phase?,iSwap,SWAP,DCX (double‑CNOT) is the primitive swap gate object,ECR,SWAP,SwapGate exchanges |q0⟩ and |q1⟩; iSwap applies |01⟩↔i|10⟩ with a phase.
+Which parametric interaction performs a rotation about X⊗X?,RZZGate(θ),RZXGate(θ),RXXGate(θ),RYYGate(θ),RXXGate(θ),"RXX rotates around the XX two‑qubit Pauli interaction; similarly RYY, RZZ, RZX."
+The ECRGate (echoed cross‑resonance) is typically used to:,Implement a global phase,Reduce idle errors,Realize an entangling interaction derived from CR,Reset a qubit to |0⟩,Realize an entangling interaction derived from CR,ECR is an echoed CR‑based entangling gate widely used on IBM hardware backends.
+"Consider the abstract MCXGate(4). During transpilation on a device with idle ancillas, compared to no ancillas, the circuit will generally become:",Deeper (more 2‑qubit gates),Shallower (fewer 2‑qubit gates),Identical depth always,Invalid; MCX cannot use ancillas,Shallower (fewer 2‑qubit gates),Abstract ops can leverage available ancillas to reduce depth/2‑qubit count per the example in docs.
+Which of the following multi‑qubit gates is a common exam‑relevant primitive?,C3XGate only,RC3XGate only,CCXGate (Toffoli),GR gate family,CCXGate (Toffoli),CCX (Toffoli) appears frequently; higher‑controlled variants exist but are less common for basics.
+What does GlobalPhaseGate(θ) change?,Relative phases between computational basis states,Measurement results directly,Only a global phase e^{iθ} (physically unobservable),It swaps |0⟩ and |1⟩,Only a global phase e^{iθ} (physically unobservable),Global phases do not affect measurement probabilities but can matter in composition/algebra.
+Which statement about Measure is correct?,It is a unitary gate returning a Gate,It is a non‑unitary operation mapping a qubit to a classical bit,It resets qubits to |0⟩,It inserts a compiler barrier,It is a non‑unitary operation mapping a qubit to a classical bit,Measure is a standard operation (non‑reversible) producing classical outcomes.
+Reset on a qubit in state |1⟩ ideally yields:,|1⟩,A random bit and |1⟩,|0⟩,"An error, since reset only works on |0⟩",|0⟩,Reset prepares the qubit to |0⟩ regardless of prior state (idealized).
+Which gate lets you supply an arbitrary unitary matrix as an operation?,LinearFunction,UnitaryGate,DiagonalGate,PauliGate,UnitaryGate,UnitaryGate(data) applies a user‑provided unitary matrix of size 2^n×2^n.
+Which gate applies a diagonal unitary specified by its diagonal entries?,PermutationGate,DiagonalGate,RVGate,UCGate,DiagonalGate,DiagonalGate(diag) is a diagonal unitary; its size implies the number of qubits.
+Which gate compactly represents a reversible linear transformation over n qubits (bit‑wise XOR linear map)?,LinearFunction,PauliGate,MCMTGate,UCRZGate,LinearFunction,"LinearFunction implements a linear reversible circuit over GF(2), useful for Clifford linear maps/permutations."
+PauliGate('XIZ') on 3 qubits is best described as:,A non‑unitary instruction,A composition of single‑qubit Paulis on specific wires,A diagonal gate only,Equivalent to SWAP,A composition of single‑qubit Paulis on specific wires,PauliGate is a multi‑qubit unitary that applies the listed Pauli on each qubit in parallel.
+Which call produces a controlled‑X (CX) from an XGate object g?,g.power(1/2),g.control(1),g.to_matrix(),g.inverse().control(0),g.control(1),Gate.control(k) adds k controls; XGate().control(1) is CX.
+What does gate.power(1/2) conceptually represent for a unitary gate?,Taking its matrix square root (a fractional power),Adding a control,Conjugate transpose,Resetting phase,Taking its matrix square root (a fractional power),"Gate.power(a) returns an operator representing the unitary raised to power a when supported (e.g., √X)."
+"In ASCII below, which qubit is the control of CX?
+
+q0: ─■──
+     │
+q1: ─┼──
+     │
+q2: ─X──",q0,q1,q2,There is no control,q0,■ denotes the control; X on q2 indicates the target; the wire from q0 connects to X on q2.
+"Which two‑qubit operation does the following ASCII depict?
+
+q0: ─X──
+     │
+q1: ─■──","CX with q0 control, q1 target","CX with q1 control, q0 target",CZ with q1 control,SWAP,"CX with q1 control, q0 target","Control (■) sits on q1 and target X on q0; hence control=q1, target=q0."
+PauliEvolutionGate(SparsePauliOp([...])) most directly corresponds to:,Time evolution under a (Pauli) Hamiltonian,Measurement in Pauli bases,Reset then evolve,Only a diagonal phase shift,Time evolution under a (Pauli) Hamiltonian,PauliEvolutionGate implements (Suzuki‑Trotter or exact) unitary evolution generated by a Pauli‑sum Hamiltonian.
+Which identity is correct for single‑qubit rotations and CZ on control-target (up to global phase)?,H(target) • CX • H(target) = CZ,S(control) • CX • Sdg(control) = CZ,H(control) • CX • H(control) = CZ,X(control) • CX • X(control) = CZ,H(target) • CX • H(target) = CZ,"Conjugating X by H maps X↔Z on the target, turning CX into CZ (up to global phase)."
