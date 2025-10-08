@@ -17,5 +17,5 @@ I tried to get fair coverage from the docs based on the study guide and sample t
 No.  I made calls.  There are a lot of very rare gates, functions, parameters, etc that I didn't include.
 
 ** Are you open to comments, constructive criticism? **
-No.  Feel free to make your own.  I made this for me, and I decided to share.
+No.  Feel free to make your own.  I made this for me, and I decided to share. Exception:  there are a few buggy questions--if someone wanted to correct the dataframe and pickle it, I'd replace it.
 
