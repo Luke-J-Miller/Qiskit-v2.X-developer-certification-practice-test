@@ -7,6 +7,8 @@ A short notebook with over 1000 questions for the qiskit developer certification
 3. Open the notebook
 4. Specify the paths to the necessary files in the first cell.
    <img width="1055" height="268" alt="image" src="https://github.com/user-attachments/assets/a1dc4cf3-02d8-489b-83f4-c8636c29a355" />
+
+   ** Update: ** `new_question_df.pkl` has been added with most buggy questions removed.
 5. Run all cells.  The notebook will walk you through it.  After every practice test, it will save your progress.  Provide the `student_history_xxxx.pkl` to continue where you left off.
 
 ## Q & A
